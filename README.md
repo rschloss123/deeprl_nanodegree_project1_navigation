@@ -18,9 +18,7 @@ The agent is an implementation of the Deep-Q Network algorithm. Details will be 
 
 # Installation
 
-To set up an Anaconda environment to run this code, you can follow the instructions included [here](https://github.com/udacity/deep-reinforcement-learning#dependencies)
-
-- Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar. These instructions include:
+- To set up an Anaconda environment to run this code, you can follow the instructions included [here](https://github.com/udacity/deep-reinforcement-learning#dependencies). These instructions include:
 
   - Creating a new environment
   - Installing OpenAI gym
