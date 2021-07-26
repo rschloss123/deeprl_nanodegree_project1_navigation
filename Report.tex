@@ -27,10 +27,10 @@
 The learning algorithm is an implementation of a deep-Q network (DQN) as described in \cite{mnih2015human}. Following this paper, the action-values, $Q$, in iteration $i$ are updated using the following loss function:
 
 \begin{equation}\label{eqn:loss}
-L_i (\theta_i) = \mathbb{E}_{(s,a,r,s')~U(D)} \left[ \left( r + \gamma \max_{a'} Q(s',a';\theta_i^{-}) - Q(s,a;\theta_i) \right)^2 \right]
+L_i (\theta_i) = \mathbb{E}_{(s,a,r,s') \sim U(D)} \left[ \left( r + \gamma \max_{a'} Q(s',a';\theta_i^{-}) - Q(s,a;\theta_i) \right)^2 \right]
 \end{equation}
 
-where $\gamma$ is the discount factor . The minibatches of (state, action reward, next state) experiences, $(s, a, r, s')~U(D)$ are sampled uniformly from a replay buffer. The variable $\theta^{-}_i$ are the target network parameters. The target network parameters are set to the local Q-network parameters, $\theta_i$ every $N$ timesteps. Eqn. \ref{eqn:loss} is implemented in the \textit{learn} function using Python and Pytorch as follows: 
+where $\gamma$ is the discount factor . The minibatches of (state, action reward, next state) experiences, $(s, a, r, s') \sim U(D)$ are sampled uniformly from a replay buffer. The variable $\theta^{-}_i$ are the target network parameters. The target network parameters are set to the local Q-network parameters, $\theta_i$, every $N$ timesteps. Eqn. \ref{eqn:loss} is implemented in the \textit{learn} function using Python and Pytorch as follows: 
 
 \begin{lstlisting}[language=Python]
     def learn(self, experiences, gamma):
@@ -72,7 +72,7 @@ The following heperparameters were used in the DQN implementation:
 
 \begin{itemize}
 \item  $\gamma$ = 0.995
-]item $N$ = 4
+\item $N$ = 4
 \item learning rate = 5e-4
 \item replay buffer size  = 1e5
 \item minibatch size = 64
@@ -117,15 +117,15 @@ class QNetwork(nn.Module):
 \section{Results}
 The agent is able to receive an average reward over 100 episodes of +13 in 395 episodes, as shown in Fig. \ref{fig:results}.
 
-\begin{figure}[h!]
-\label{fig:results}
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.75]{./figures/results.png}
 \caption{Average Score Plot}
+\label{fig:results}
 \end{figure}
 
 \section{Future Work}
-The learning algorithm does not make use of Double Q-Learning, prioritized experience repoly or a dueling DQN architecture. Using one or more of these modifications could potentially improve the performance of the DQN agent. 
+The learning algorithm does not make use of Double Q-Learning, prioritized experience replay, or a dueling DQN architecture. Using one or more of these modifications could potentially improve the performance of the DQN agent. 
 
 \bibliographystyle{plain}
 \bibliography{bib}
